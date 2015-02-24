@@ -1,7 +1,7 @@
-Suspenders
-======
+Shutterbugs-react
+=================
 
-React-js app or component
+Placeholder-image component (port from component created in shutterbugs-ember)
 
 ## Setup
 
@@ -9,7 +9,7 @@ run `npm install`
 
 run `broccoli serve`
 
-## deploy
+## Build
 
 run `broccoli build build` where the second build stands for the directory the
 build is placed in.

@@ -11,7 +11,6 @@ var PlaceholderImage = React.createClass({
 
       width: this.props.width,
       height: this.props.height,
-      style: this.props.style,
       type: this.props.type,
     };
   },

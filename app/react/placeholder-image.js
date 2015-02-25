@@ -71,6 +71,20 @@ var PlaceholderImage = React.createClass({
     }
   },
 
+  setUrl: function() {
+    var type = this.props.type;
+
+    if (type === "avatar") {
+      this.getAvatar();
+    } else if(type) {
+      this.getImageForType();
+    } else {
+      this.getRandomImage();
+    }
+
+    return this.state.typeworkLogo;
+  },
+
   render: function() {
     var classes = new Str("", " ");
     classes.append(this.state.centered);

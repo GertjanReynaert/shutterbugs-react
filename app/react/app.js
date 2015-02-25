@@ -25,7 +25,7 @@ var App = React.createClass({
           </div>
         </nav>
         <div className="col-lg-9">
-          {/* {{placeholder-image width="500" height="auto" style="centered rounded" type="bridge"}} */}
+          <PlaceholderImage width="500" height="auto" style="centered rounded" type="bridge"/>
         </div>
         <div className="col-lg-3">
           <div className="panel panel-default">
@@ -36,7 +36,7 @@ var App = React.createClass({
               <div className="list-group-item">
                 <div className="media-left">
                   <a href="#">
-                    {/* {{placeholder-image style="circle" type="avatar"}} */}
+                    <PlaceholderImage style="circle" type="avatar"/>
                   </a>
                 </div>
                 <div className="media-body">
@@ -47,7 +47,7 @@ var App = React.createClass({
               <div className="list-group-item">
                 <div className="media-left">
                   <a href="#">
-                    {/* {{placeholder-image style="circle" type="avatar"}} */}
+                    <PlaceholderImage style="circle" type="avatar"/>
                   </a>
                 </div>
                 <div className="media-body">
@@ -58,7 +58,7 @@ var App = React.createClass({
               <div className="list-group-item">
                 <div className="media-left">
                   <a href="#">
-                    {/* {{placeholder-image style="circle" type="avatar"}} */}
+                    <PlaceholderImage style="circle" type="avatar"/>
                   </a>
                 </div>
                 <div className="media-body">

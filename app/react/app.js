@@ -25,7 +25,7 @@ var App = React.createClass({
           </div>
         </nav>
         <div className="col-lg-9">
-          <PlaceholderImage width="500" height="auto" style="centered rounded" type="bridge"/>
+          <PlaceholderImage width="xlarge" height="auto" style="centered rounded" type="bridge"/>
         </div>
         <div className="col-lg-3">
           <div className="panel panel-default">

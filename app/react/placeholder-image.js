@@ -9,14 +9,42 @@ var PlaceholderImage = React.createClass({
       xlarge: 500,
       typeworkLogo: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6BAMAAAB6wkcOAAAAHlBMVEU/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8RLl7PAAAACXRSTlMAQE2QrODl5ugIN0RyAAAAtUlEQVR42u3dMRGAMBAAwccBKkAAOIgGZqjpaPGABiZuadPS5Cn2DKyEi6nmdcSZqD9RM6PT6XQ6nU6n0+l0Op1Op3/Sy9K2dtbHaBvodDqdTqfT6XQ6nU6n0+l0Op1Op9PpdDqdTqfT6XQ6nf4r/d7a9s56t+h0Op1Op9PpdDqdTqfT6XQ6nU6n0+l0Op1Op9PpdDqdTqfT6XQ6nU6n0+l0Op1Op9PpdDqdTqcn67lH5jlRv14zAEBWshvDNAAAAABJRU5ErkJggg==",
 
-      width: this.props.width,
-      height: this.props.height,
       type: this.props.type,
     };
   },
 
   componentWillMount: function() {
     this.setStyles();
+    this.setWidth();
+    this.setHeight();
+  },
+
+  setWidth: function() {
+    var width = this.props.width;
+
+    if (width) {
+      if (this.state.hasOwnProperty(width)) {
+        this.setState({w: this.state.valueOf()[width]});
+      } else {
+        this.setState({w: width});
+      }
+    } else {
+      this.setState({w: this.state.small});
+    }
+  },
+
+  setHeight: function() {
+    var height = this.props.height;
+
+    if (height) {
+      if (this.state.hasOwnProperty(height)) {
+        this.setState({h: this.state.valueOf()[height]});
+      } else {
+        this.setState({h: height});
+      }
+    } else {
+      this.setState({h: this.state.small});
+    }
   },
 
   setStyles: function() {
@@ -52,10 +80,10 @@ var PlaceholderImage = React.createClass({
 
     return (
       <img
-      width={ this.state.width || this.state.small }
-      height={ this.state.height || this.state.small }
-      className={classes.toString()}
-      src={this.state.typeworkLogo}
+      width={ this.state.w }
+      height={ this.state.h }
+      className={ classes.toString() }
+      src={this.state.url || this.state.typeworkLogo}
       />
     );
   }

@@ -8,8 +8,7 @@ var PlaceholderImage = React.createClass({
       large: 250,
       xlarge: 500,
       typeworkLogo: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6BAMAAAB6wkcOAAAAHlBMVEU/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8RLl7PAAAACXRSTlMAQE2QrODl5ugIN0RyAAAAtUlEQVR42u3dMRGAMBAAwccBKkAAOIgGZqjpaPGABiZuadPS5Cn2DKyEi6nmdcSZqD9RM6PT6XQ6nU6n0+l0Op1Op3/Sy9K2dtbHaBvodDqdTqfT6XQ6nU6n0+l0Op1Op9PpdDqdTqfT6XQ6nf4r/d7a9s56t+h0Op1Op9PpdDqdTqfT6XQ6nU6n0+l0Op1Op9PpdDqdTqfT6XQ6nU6n0+l0Op1Op9PpdDqdTqcn67lH5jlRv14zAEBWshvDNAAAAABJRU5ErkJggg==",
-
-      type: this.props.type,
+      corsProxy: "https://jsonp.nodejitsu.com/?callback=?&url="
     };
   },
 
@@ -17,6 +16,7 @@ var PlaceholderImage = React.createClass({
     this.setStyles();
     this.setWidth();
     this.setHeight();
+    this.setUrl();
   },
 
   setWidth: function() {
@@ -82,7 +82,51 @@ var PlaceholderImage = React.createClass({
       this.getRandomImage();
     }
 
-    return this.state.typeworkLogo;
+    this.setState({url: this.state.typeworkLogo});
+  },
+
+  getAvatar: function() {
+    var success = function(json) {
+      this.setState({url: json.image_urls.epic});
+    }.bind(this);
+
+    var options = {
+      url: 'http://uifaces.com/api/v1/random',
+      successMethod: success
+    };
+
+    var ajax = new Ajax(options);
+    ajax.get();
+  },
+
+  getImageForType: function() {
+    var success = function(json) {
+      var arr = json.images;
+      var img = arr[Math.floor(Math.random()*arr.length)];
+      this.setState({url: img.large_url});
+    }.bind(this);
+
+    var options = {
+      url: this.state.corsProxy + 'http://www.splashbase.co/api/v1/images/search?query=' + this.props.type,
+      successMethod: success
+    };
+
+    var ajax = new Ajax(options);
+    ajax.get();
+  },
+
+  getRandomImage: function() {
+    var success = function(json) {
+      this.setState({url: json.large_url || json.url});
+    }.bind(this);
+
+    var options = {
+      url: this.state.corsProxy + 'http://www.splashbase.co/api/v1/images/random',
+      successMethod: success
+    };
+
+    var ajax = new Ajax(options);
+    ajax.get();
   },
 
   render: function() {
@@ -97,7 +141,7 @@ var PlaceholderImage = React.createClass({
       width={ this.state.w }
       height={ this.state.h }
       className={ classes.toString() }
-      src={this.state.url || this.state.typeworkLogo}
+      src={ this.state.url }
       />
     );
   }
